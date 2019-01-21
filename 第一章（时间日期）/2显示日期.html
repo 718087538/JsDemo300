@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style type="text/css">
+    	.timeBox{
+    		margin: 40px auto;
+    		width: 500px;
+    		height: 300px;
+    		background-color:#fe8ee5;
+    		padding: 30px;
+    	}
+    	.timeBox{
+    		text-align: center;
+    	}
+    	#time{
+    		float: right;
+    	}
+    </style>
+  </head>
+  <body>
+    <div class="timeBox">
+      时间日期--显示日期
+      <hr>
+      <h1 id="time"></h1>
+    </div>
+
+
+    <script type="text/javascript">
+      var get_time=function(){
+	// 在date类中new出一个对象
+      var now = new Date();
+      // ES3开始就不在使用getYear,输出的值还要再运算
+    var year=now.getFullYear();
+    var month=now.getMonth()+1;
+		var week=now.getDay();
+    var str='星期';
+    switch(week){
+      case 0:str+='日';break;
+      case 1:str+='一';break;
+      case 2:str+='二';break;
+      case 3:str+='三';break;
+      case 4:str+='四';break;
+      case 5:str+='五';break;
+      case 6:str+='六';break;
+    }
+      	document.getElementById("time").innerHTML=year+'年'+month+'月'+' '+str;
+      }
+     // 避免1秒后才显示时间,所以先调用一次get_time
+    get_time();
+	setInterval(get_time,6000);
+
+    </script>
+
+    <script type="text/javascript">
+
+
+      // 方法二思路
+  /*    var a = new Array("日", "一", "二", "三", "四", "五", "六");  
+    var week = new Date().getDay();  
+    var str = "今天是星期"+ a[week];  
+    alert(str);  */
+
+  // 方法三思路
+  /*    var str = "今天是星期" + "日一二三四五六".charAt(new Date().getDay());alert(str);  */
+
+  // 方法四思路
+    /*var str = "";  
+    var week = new Date().getDay();  
+    if (week == 0) {  
+            str = "今天是星期日";  
+    } else if (week == 1) {  
+            str = "今天是星期一";  
+    } else if (week == 2) {  
+            str = "今天是星期二";  
+    } else if (week == 3) {  
+            str = "今天是星期三";  
+    } else if (week == 4) {  
+            str = "今天是星期四";  
+    } else if (week == 5) {  
+            str = "今天是星期五";  
+    } else if (week == 6) {  
+            str = "今天是星期六";  
+    }  
+     name="code" class="javascript">    alert(str);</pre>  */
+
+
+    </script>
+  </body>
+</html>
