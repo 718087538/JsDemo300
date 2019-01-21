@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style type="text/css">
+    	.timeBox{
+    		margin: 40px auto;
+    		width: 500px;
+    		height: 300px;
+    		background-color:#fe8ee5;
+    		padding: 30px;
+    	}
+    	.timeBox{
+    		text-align: center;
+    	}
+    	#time{
+    		float: right;
+    	}
+    </style>
+  </head>
+  <body>
+    <div class="timeBox">
+      时间日期--显示时钟
+      <hr>
+      <h1 id="time"></h1>
+    </div>
+
+    <script type="text/javascript">
+
+      var get_time=function(){
+	// 在date类中new出一个对象
+      var now = new Date();
+		var h=now.getHours();
+		var half="AM"
+		// 判断是上午还是下午
+      if (h<13) {
+      }else{
+      	var h=h%12;
+      	half ="PM";
+      }
+
+      	document.getElementById("time").innerHTML=h+':'+now.getMinutes()+':'+now.getSeconds()+' '+half;
+      }
+     // 避免1秒后才显示时间,所以先调用一次get_time
+    get_time();
+	setInterval(get_time,500);
+
+    </script>
+  </body>
+</html>
