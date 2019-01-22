@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="demo.css">
+<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+
+</head>
+<body>
+<div class="container">
+	<div class="box">
+		<img src="https://img-blog.csdn.net/20170908172159479">
+        <img src="https://img-blog.csdn.net/20170908172353986">
+        <img src="https://img-blog.csdn.net/20170908172424315">
+	</div>
+	<div class="circle">
+		<b class="current"></b>
+		<b></b>
+		<b></b>
+	</div>
+	<div class="left">《</div>
+	<div class="right">》</div>
+</div>
+<button id="btn">按钮</button>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var i=0;
+		var timer;
+		// 找到第一个img并显示，找到同级元素并隐藏
+		$("img").eq(0).show().siblings().hide();
+		  /*开始做图片轮播，使用定时器*/
+		// 设置定时器
+		function start(){
+			timer=setInterval(function(){
+				console.log(i);
+				i++;
+				// i的最大值要和图片书相等
+				if(i==3){
+					i=0;
+				}
+				change();
+			},2000)
+		}
+		start();
+
+// 改变当前图片和原点
+function change(){
+	/*当前图片淡入，其他图片淡出*/
+	$('img').eq(i).fadeIn(300).siblings().stop(true,true).fadeOut(300);
+	$('b').eq(i).addClass("current").siblings().removeClass("current");
+}
+// 点击左边按钮时候，显示当前图片的左边的第一个图片，再点击，依次向左，图片变换，圆点样式变换。当停止点击按钮时，图片依旧一定时间内显示下一个图片（右边的第一个）*/
+	$('.left').click(function(){
+		console.log(i+'左');
+		i--;
+		if (i==-1) {
+			i=2;
+		}
+		change();
+	});
+	$('.right').click(function(){
+		console.log(i+'右');
+		i++;
+		if (i==3) {
+			i=0;
+		}
+		change();
+	});
+ // 鼠标移入小圆点的时候，首先清除定时器，找到当前圆点的索引，改变当前显示的图片，使其变换成圆点对应的图片，当前圆点变换样式*/
+$("b").hover(function(){
+	clearInterval(timer);
+	//index()获取制定元素的位置，从零开始
+	i=$(this).index();
+	change();
+	},function(){
+		start();
+	});
+
+	});
+/*知识点：
+当鼠标指针悬停在上面时，改变 <p> 元素的背景颜色：(都好那个表示离开时执行的函数！)
+
+$("p").hover(function(){
+    $("p").css("background-color","yellow");
+},function(){
+    $("p").css("background-color","pink");
+});*/
+</script>
+</body>
+</html>
