@@ -1,0 +1,114 @@
+
+<!-- 打开注释就有bug,移动到顶部在离开，内容就不变了，暂未解决！奇怪! -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+    <style type="text/css">
+    *{margin: 0;padding: 0;list-style: none;}
+    .container{
+    	width: 400px;
+    	height: 200px;
+    	background-color: #999;
+    }
+    ul{
+    	display: flex;
+    	justify-content: space-between;
+    	height: 40px;
+    	align-items: center;
+    	background-color: pink;
+    	text-align:center;
+
+    }
+    li{
+    	width: 100px;
+    	line-height: 40px;
+    	border-right: 2px solid red;
+    }
+    li:last-child{
+    	border-right:none; 
+    }
+    .active{
+    	background-color: green;
+    }
+    .item_info{
+    	font-size: 100px;
+    	text-align: center;
+    }
+    .item_info{
+    	display: none;
+    }
+    .selected{
+    	display: block;
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+	<div class="nav">
+		<!-- 并不一定要使用无序列表，使用div也可以 -->
+		<ul>
+			<li class="active">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+	</div>
+	<div class="item">
+		<div class="item_info selected">1</div>
+		<div class="item_info">2</div>
+		<div class="item_info">3</div>
+		<div class="item_info">4</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function(){
+        var i=0;
+        var timer;
+        // 点击进来先显示第一栏和第一个页面
+        $("li").eq(i).addClass('active').siblings().removeClass('active');
+        $(".item_info").eq(i).addClass('item_info').siblings().removeClass('selected');
+
+        // 设置定时器控制  i ，开始自动动起来
+        start();
+        function start(){
+            timer=setInterval(function(){
+                i++;
+                if (i==4) {
+                    i=0;
+                }
+                change()
+            },2000)
+        };
+        function change(){
+            // console.log(i);
+            $("li").eq(i).addClass('active').siblings().removeClass('active');
+            $(".item_info").eq(i).addClass('selected').siblings().removeClass('selected');
+            $('.item_info').eq(i).show().siblings().hide();
+        }
+
+
+
+
+
+// 鼠标悬停是清除定时器，移开时重新启用定时器
+/*		$("li").hover(function(){
+            clearInterval(timer);
+			$(this).addClass("active").siblings().removeClass("active");
+			$('.item_info').eq($(this).index()).show().siblings().hide();
+		},function(){
+            start()
+        });*/
+        // 鼠标放在内容上也停止滚动,离开则继续滚动；
+        $(".item_info").hover(function(){
+            clearInterval(timer);
+        },function(){
+            start()
+        })
+	})
+</script>
+</body>
+</html>
