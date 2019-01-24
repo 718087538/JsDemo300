@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+
+		.shadow{
+			position: relative;
+			width: 300px;
+			height: 300px;
+			background-color:#7FFF00;
+			margin:80px auto;	
+		}
+		.shadow{
+			transform: translateY(1);
+			transition: all 600ms;
+		}
+		/*！！！伪元素是加在“容器内部”，非容器就加在后面！！！*/
+		/*创建伪元素，存放阴影，并不增加新dom元素 ()*/
+		.shadow::after{
+			content: "";
+			display: block;
+			position: absolute;
+			bottom: -60px;
+			height: 14px;
+			width: 300px;
+			/*把背景色，阴影都设成同一颜色*/
+			background-color: #ccc;
+			border-radius: 50%;
+			box-shadow: 0 0 15px 10px #ccc;
+			transition: all 600ms;
+		}
+		.shadow:hover{
+			transform: translateY(-20px);
+			transition: all 800ms;
+		}
+		.shadow:hover:after{
+			/*y轴上移20px,缩小0.6倍，有一种远去的效果*/
+			transform: translateY(-20px);
+			transform: scale(0.6);
+			transition: all 800ms;
+		}
+	</style>
+</head>
+<body>
+		<div class="shadow"></div>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
