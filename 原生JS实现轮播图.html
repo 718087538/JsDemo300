@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>原生JS实现轮播图</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		#pic{
+			position: absolute;
+		}
+		.wrap{
+			width: 800px;
+			height: 400px;
+			margin: 0 auto;
+			overflow: hidden;
+			position: relative;
+		}
+		.wrap ul li{
+			width: 800px;
+			height: 400px;
+		}
+		img{
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<ul id="pic">
+			<li><img src="https://upload-images.jianshu.io/upload_images/14707256-1a38d51a406d7c04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/598/format/webp"></li>
+			<li><img src="https://upload-images.jianshu.io/upload_images/14707256-8b5ceeb060377ad1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp"></li>
+			<li><img src="https://upload-images.jianshu.io/upload_images/14707256-1a38d51a406d7c04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/598/format/webp"></li>
+			<li><img src="https://upload-images.jianshu.io/upload_images/14707256-8b5ceeb060377ad1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp"></li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		window.onload=function(){
+			var wrap = document.getElementsByClassName('wrap')[0];
+			var img = document.getElementById('pic').getElementsByTagName("li");
+			index=0;
+			timer=null;
+
+			timer = setInterval(autoPlay,1000);
+
+			function autoPlay () {
+				// 如果后面没有了，则调用定时器之前就把index设置为0，即第一张
+				if (index>=img.length) {index=0};
+				console.log(index);
+
+				changePic(index);
+			};
+			function changePic(curIndex){
+
+				// 把全部图片设置为隐藏
+				for (var i = 0; i < img.length; i++) {
+					img[i].style.display = "none";
+		 		}
+		 		// 把传进来参数的那张图片设置为显示
+		 		// 这里就是把index传进来，index就代表第几张图片
+		 		img[curIndex].style.display = "block";
+		 		
+		 		index++;
+			}
+		}
+
+	</script>
+</body>
+</html>
