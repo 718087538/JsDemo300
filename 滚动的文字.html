@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>滚动的文字</title>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<style type="text/css">
+*{
+	margin: 0;
+	padding: 0;
+}
+	.move{
+		display: inline-block;
+		margin-left:100%;
+		white-space: nowrap;
+	}
+</style>
+</head>
+<body>
+	<p class="move">我是滚动的文字</p><br>
+	<button class="btn">按钮</button>
+
+	<script>
+
+
+		/*$(".btn").click(function () {
+			var L=parseInt($(".move").css("marginLeft"));
+			console.log(L);
+			// alert(L);
+			 $(".move").css("margin-left",L-500+'px');
+			 if (L<0) {
+			 	$(".move").css("margin-left",'100%');
+			 }
+		})*/
+
+		function m() {
+			var L=parseInt($(".move").css("marginLeft"));
+			console.log(L);
+			// alert(L);
+			 $(".move").css("margin-left",L-200+'px');
+			 if (L<0) {
+			 	$(".move").css("margin-left",'100%');
+			 }}
+
+
+			var timer=setInterval(m,200);
+	</script>
+</body>
+</html>

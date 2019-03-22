@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+		<textarea name="test" onkeydown="check(this)" onkeyup="check(this)"></textarea>
+		<p id="remLen">	</p>
+
+<script>
+	let maxLength=10;
+	let len=document.getElementById("remLen");
+	function 	check(obj) {
+		// body...
+		if(obj.value.length>maxLength){
+			obj.value=obj.value.substring(0,maxLength);
+			len.innerText = '超出最大字数';
+		}else{
+				len.innerText = '还剩下' + (maxLength - obj.value.length) + '字';
+		}
+	}
+</script>
+</body>
+</html>

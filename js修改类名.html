@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>标题</title>
+	<script src="jquery.min.js"></script>
+	<style>
+	.red{color:red !important;}
+	.blue{color:blue !important;}
+</style>
+</head>
+<body>
+	<div id="test">我是示例DIV</div>
+	<input type="button" id="js" value="使用javascript方法修改类名为red">
+	<input type="button" id="jq" value="使用jquery方法修改类名为blue">
+
+
+	<script type="text/javascript">
+
+		$("#test").attr("class","blue");
+		$("#test").prop("class","blue");
+		document.getElementById("test").className = "blue";
+
+
+		$(function(){
+			$("#jq").click(function() {
+				$("#test").attr("class","blue");
+			});
+		}); 
+
+		window.onload = function(){
+			document.getElementById("js").onclick = function(){
+			document.getElementById("test").className = "red";
+			}
+		}
+		
+	</script>
+</body>
+</html>

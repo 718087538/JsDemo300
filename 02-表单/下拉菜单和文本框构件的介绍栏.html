@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form name="msgForm" method="">
+		<select name="msgSelect" onChange="who()">
+			<option>第1个</option>
+			<option>第2个</option>
+			<option>第3个</option>
+			<option>第4个</option>
+		</select>
+	</form>
+ 	<!-- textarea没有value属性，但是用js就是能够填充value值， -->
+
+	<textarea id="a"></textarea>
+
+	<script>
+		//这里写入每个选项对应的说明文字
+		let msg=new Array();
+		msg[0]="我是第1个";
+		msg[1]="我是第2个";
+		msg[2]="我是第3个";
+		msg[3]="我是第4个";
+	//根据需要，这里应该随着选项的改变而增减项目
+	function who(argument) {
+		//获取选择了第几个
+		let idx=document.msgForm.msgSelect.selectedIndex;
+		
+		//取到数组中对应的值
+		_value=msg[idx];
+
+		// 又2种方法
+		// document.getElementById("a").value=_value;
+		document.getElementById("a").innerText=_value;
+	}
+
+
+	</script>
+</body>
+</html>

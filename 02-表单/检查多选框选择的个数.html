@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form name="selList" method="">
+		1<input type=checkbox name=ckbox value="ON">
+		2<input type=checkbox name=ckbox>   
+		3<input type=checkbox name=ckbox>   
+		4<input type=checkbox name=ckbox>   
+		5<input type=checkbox name=ckbox>   
+		6<input type=checkbox name=ckbox>    
+		<input type="button" value="检测选择个数" onclick="check(this.form)">
+	</form>
+	<script>
+		function check(obj) {
+			let total = 0;				//这个变量用来存放我们所要统计的个数值
+			let max = obj.ckbox.length;		//取得checkbox的总个数
+			for(i=0;i<max;i++){
+				// eval() 函数可计算某个字符串，并执行其中的的 JavaScript 代码。
+				if(eval("document.selList.ckbox[" + i + "].checked")==true){
+					total+=1;
+				}
+			}
+			// alert("您选择了"+total+"个选项");
+			alert(`您选择了${total}个选项`);
+		}
+
+	</script>
+</body>
+</html>
