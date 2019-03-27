@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style>
+            *{margin:0 ; padding:0;}
+            #left{width:300px;
+                    height:300px;
+                    border:1px solid gold;
+                    position:relative;
+                    float:left;
+                    margin-right:20px;
+                    left:10px;
+                    top:10px;}
+            #left img{width:300px;
+                        height:300px;}
+            #mask{width:90px;
+                    height:90px;
+                    background:greenyellow;
+                    opacity: 0.5;
+                    position: absolute;
+                    top:0;
+                    left:0;
+                    display:none;
+                    cursor: move;}
+            #big{width:600px;
+                    height:600px;
+                    overflow: hidden;
+                    float: left;
+                    position:relative;
+                    left: 10px;
+                    top:10px;
+                    display:none;
+                    border:1px solid goldenrod;}
+            #big img{position: absolute;
+                    left:0;
+                    top:0;}
+            
+        </style>
+    </head>
+    <body>
+        <div id="left">
+            <img src="4.jpg" />
+            <div id="mask"></div>
+        </div>
+        <div id="big">
+            <img src="1.jpg" />
+        </div>
+        <script>
+        
+         // 左边遮罩层与左边显示框大小的比例对应大图显示区与图片的比例
+         
+            window.onload = function(){
+                var left = document.getElementById("left");
+                var mask = document.getElementById("mask");
+                var big = document.getElementById("big");
+                var bigImg = big.children[0];
+                
+                //鼠标移入，遮罩层显示，大图显示区显示
+                left.onmouseenter = function(){
+                    mask.style.display = big.style.display ='block';
+                };
+                //鼠标移出，遮罩层隐藏，大图显示区隐藏
+                left.onmouseleave = function(){
+                    mask.style.display= big.style.display = 'none';
+                };
+                
+                //鼠标移动，遮罩层跟随鼠标，大图显示相关内容
+                left.onmousemove = function(ev){
+                    //兼容IE
+                    var ev = ev || event;                       
+                    var l = ev.clientX-this.offsetLeft-mask.offsetWidth/2;
+                    var t = ev.clientY-this.offsetTop-mask.offsetHeight/2;
+                    //不让遮罩层出左边显示框的范围
+                    if(l<=0){
+                        l=0
+                    }else if(l>=left.clientWidth - mask.offsetWidth){
+                        l = left.clientWidth - mask.offsetWidth
+                    }
+                    if(t<=0){
+                        t=0
+                    }else if(t>=left.clientHeight - mask.offsetHeight){
+                        t = left.clientHeight - mask.offsetHeight
+                    }
+                    //比例,将能够移动的距离做比例
+                    var percX = l/(this.clientWidth- mask.offsetWidth);
+                    var percY = t/(this.clientHeight- mask.offsetHeight);
+                    //大图显示区
+                    
+                    bigImg.style.left = -percX*(bigImg.offsetWidth - big.clientWidth)+'px';
+                    bigImg.style.top = -percY*(bigImg.offsetHeight - big.clientHeight)+'px';
+                    //遮罩层的位置
+                    mask.style.left = l +'px';
+                    mask.style.top = t +'px';
+                };
+            };
+        </script>
+    </body>
+</html>
