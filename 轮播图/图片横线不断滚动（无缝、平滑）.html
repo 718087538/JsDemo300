@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<style type="text/css">
+
+    #demo {
+        background: #FFF;
+        overflow:hidden;
+        border: 1px dashed #CCC;
+        width: 700px;
+    }
+    #demo img {
+        width: 120px;
+        height: 90px;
+        border: 3px solid #F2F2F2;
+    }
+    #indemo {
+        float: left;
+        width:400%;
+    }
+    #demo1 {
+        float: left;
+    }
+    #demo2 {
+        float: left;
+    }
+</style>
+<div id="demo">
+    <div id="indemo">
+        <div id="demo1">
+            <a href="#"><img src="../img/img1.png"/></a>
+            <a href="#"><img src="../img/img2.png"/></a>
+            <a href="#"><img src="../img/img3.png"/></a>
+            <a href="#"><img src="../img/img1.png"/></a>
+            <a href="#"><img src="../img/img2.png"/></a>
+            <a href="#"><img src="../img/img3.png"/></a>
+        </div>
+        <div id="demo2">
+        </div>
+    </div>
+</div>
+<script>
+
+    var speed=1;
+    var tab=document.getElementById("demo");
+    var tab1=document.getElementById("demo1");
+    var tab2=document.getElementById("demo2");
+    // 这样做是为了把tab1的宽度赋值tab2
+    tab2.innerHTML=tab1.innerHTML;
+
+
+    // 用tab2的宽度来度量是否需要重新滚动
+    function Marquee(){
+        if(tab2.offsetWidth-tab.scrollLeft<=0)
+            tab.scrollLeft-=tab2.offsetWidth
+        else{
+            tab.scrollLeft++;
+        }
+        // console.log(tab.scrollLeft);
+    }
+    var MyMar=setInterval(Marquee,speed);
+    tab.onmouseover=function() {clearInterval(MyMar)};
+    tab.onmouseout=function() {MyMar=setInterval(Marquee,speed)};
+
+</script>
+</body>
+</html>
