@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+		.swiper{
+			width: 600px;
+			height: 300px;
+			overflow: hidden;
+		}
+		.swiper-item{
+			width: 100%;
+			height: 100%;
+			position: relative;
+		}
+		img{
+			width: 100%;
+			height: 100%;
+		}
+		span{
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			height:60px;
+			line-height: 60px;
+			width: 100%;
+			background-color: rgba(0,0,0,0.5);
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div class="swiper">	
+		<div class="swiper-item">
+			<img src="../img/img1.png">
+			<span>我是第111111111111张</span>
+		</div>
+		<div class="swiper-item">
+			<img src="../img/img2.png">
+			<span>我是第2222222222张</span>		
+		</div>
+		<div class="swiper-item">
+			<img src="../img/img3.png">
+			<span>我是第33333333333张</span>		
+		</div>
+	</div>
+
+
+	<script src="../0frame/jquery-3.3.1.js"></script>
+	<script>
+		var i=0;
+		var timer;
+		$(".swiper-item").eq(0).fadeIn().siblings().hide();
+
+		function start() {
+			timer=setInterval(function(){
+				i++;
+				if (i==3) {
+					i=0;
+				}
+				change();
+			},2000);
+		};
+		start();
+
+		function change(){
+			$('.swiper-item').eq(i).fadeIn().siblings().stop(true,true).fadeOut();
+		}
+
+
+	</script>
+	
+</body>
+</html>

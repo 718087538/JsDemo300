@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.box1{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			margin-top: 500px;
+		}
+		.box2{
+			width: 1000px;
+			height: 100px;
+			margin-top: 500px;
+			background-color: green;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="0frame/animate.css">
+</head>
+<body>
+<div class="box1"></div>
+<div class="box2"></div>
+
+<script type="text/javascript" src="0frame/jquery-3.3.1.js" ></script>
+<script type="text/javascript">
+    $(function(){
+		//元素偏移出去的距离距顶部高度
+        var odiv = $(".box2").offset().top;   
+        var clientH =  $(window).height();   //可视区高度
+
+        $(window).scroll(function(){
+
+            if( odiv < clientH + $(window).scrollTop()){
+                $(".box2").addClass("animated wobble")
+            }
+        });
+    })
+</script>
+</body>
+</html>
