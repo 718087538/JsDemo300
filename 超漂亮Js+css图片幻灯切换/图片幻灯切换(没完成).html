@@ -1,0 +1,78 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #ibanner{width: 650px;height: 250px;position: relative;overflow: hidden;margin: 20px auto;}
+        #ibanner_pic a {position: absolute;top: 0;display: block;width: 650px;height: 250px;overflow: hidden;}
+
+        /*4张图的样式*/
+        .pic1{
+            z-index: 3;left: 0;top: 0;
+        }
+        .btn span{
+            margin-right: 20px;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .btn{
+            position: absolute;bottom: 0;right: 0;color: deeppink;font-size: 50px;z-index: 20;
+        }
+        .btn .black{color: aliceblue;background-color: red;}
+    </style>
+</head>
+<body>
+<div id="ibanner">
+    <div id="ibanner_pic">
+        <a href=""><img src="a1.jpg" alt=""/></a>
+        <a href=""><img src="a2.jpg" alt=""/></a>
+        <a href=""><img src="a3.jpg" alt=""/></a>
+        <a href=""><img src="a4.jpg" alt=""/></a>
+    </div>
+    <div class="btn"></div>
+</div>
+<script src="../0frame/jquery-3.3.1.js"></script>
+<script>
+    $(function () {
+        let imgs = $("a");
+        let num=0;
+
+
+        // 添加按钮
+        for(i=0;i<imgs.length;i++){
+            $(".btn").append("<span>"+parseInt(i+1)+"</span>");
+
+        }
+
+
+        // 让图片和数字动起来
+        let change=()=>{
+                if(num==imgs.length){num=0;}
+                // console.log(num);
+            $("a").eq(num).addClass("pic1").siblings().removeClass("pic1");
+            $("span").eq(num).addClass("black").siblings().removeClass("black");
+                 num++;
+
+        };
+        change();
+        let timer=setInterval(
+            change,1000
+        );
+
+        $(".btn span").mouseover(
+            ()=>{
+                clearInterval(timer);
+            }
+        );
+        $(".btn span").mouseout(
+            ()=>{
+                let timer=setInterval(
+                    change,1000
+                );
+            }
+        )
+
+
+    })
+</script>
+</body>
+</html>

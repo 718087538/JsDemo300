@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box ul{
+            display: flex;
+        }
+        .box ul li{
+            list-style: none;
+            margin-right: 40px;
+        }
+        .sel::after{
+            content: "";
+            display: block;
+            width: 20px;
+            height: 4px;
+            margin: 0 auto;
+            background: #c7254e;
+        }
+        .info .infoItem{
+            display: none;
+            width: 500px;
+            height: 30px;
+            border:2px solid red;
+        }
+    </style>
+    <script src="../0frame/jquery-3.3.1.js"></script>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li>列表1</li>
+            <li>列表2</li>
+            <li>列表3</li>
+            <li>列表4</li>
+            <li>列表5</li>
+        </ul>
+    </div>
+
+    <div class="info">
+        <div class="infoItem">内容11111111111</div>
+        <div class="infoItem">内容22222222222</div>
+        <div class="infoItem">内容3333333333333</div>
+        <div class="infoItem">内容444444444444</div>
+        <div class="infoItem">内容555555555555</div>
+    </div>
+<script>
+    $(function () {
+        // 获取所有的列表
+        let lis=$("li");
+        //获取所有的内容
+        let infos=$(".infoItem");
+
+        //默认的列表下划线和显示的内容
+        lis.eq(3).addClass("sel").siblings().removeClass("sel");
+        infos.eq(3).css({"display":"block"}).siblings().css({"display":"none"})
+
+        for(i=0;i<lis.length;i++){
+
+            // 使用闭包，为每个li不同的事件，避免打印的都是最后一个
+            (function (i) {
+                    $(lis.eq(i)).click(
+                        ()=>{
+                            // 添加下划线开始
+                            lis.eq(i).addClass("sel").siblings().removeClass("sel");
+                            // 显示内容
+                            infos.eq(i).css({"display":"block"}).siblings().css({"display":"none"})
+                        }
+                    )
+                }
+            )(i)
+        }
+    })
+</script>
+</body>
+</html>
