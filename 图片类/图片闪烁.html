@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<DIV id="soccer" style="position:absolute;left:150; top:30">
+	<img SRC="../img/img1.png">
+</DIV>
+
+<script>
+	var msecs=30;  //注：这是闪烁间隔，越大间隔越长，越小闪的越历害!
+	let item = document.getElementById("soccer");
+	function blink(){
+		item.style.visibility=(item.style.visibility=="hidden") ? "visible" : "hidden"
+		setTimeout("blink()", msecs)
+	}
+blink()
+
+</script>
+</body>
+</html>
