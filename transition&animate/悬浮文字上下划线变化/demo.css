@@ -1,0 +1,67 @@
+li {
+  width: 285px;
+  height: 200px;
+  position: relative;
+  transition: all 1s;
+  background: deeppink;
+}
+li:hover .look {
+  opacity: 1;
+}
+li:hover .item img {
+  width: 285px;
+  height: 200px;
+  transform: scale(1.2);
+}
+li:hover .look p::before, li:hover .look p::after {
+  width: 74px;
+  margin-left: -37px;
+}
+li .imgBox {
+  display: block;
+  overflow: hidden;
+}
+li .imgBox img {
+  width: 285px;
+  height: 200px;
+  transition: all 0.3s linear;
+}
+li .look {
+  position: absolute;
+  top: 0;
+  width: 285px;
+  height: 160px;
+  padding-top: 58px;
+  padding-left: 120px;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: all 0.3s linear;
+}
+li .look p {
+  position: relative;
+  margin-left: -14px;
+  margin-top: 10px;
+  color: #fff;
+  width: 74px;
+  padding: 8px 0;
+  text-align: center;
+}
+li .look p::before, li .look p::after {
+  position: absolute;
+  left: 50%;
+  margin-left: -3px;
+  content: '';
+  display: block;
+  width: 6px;
+  height: 1px;
+  background-color: #fff;
+  transition: all 0.3s linear;
+}
+li .look p::before {
+  top: 5px;
+}
+li .look p::after {
+  bottom: 5px;
+}
+
+/*# sourceMappingURL=demo.css.map */
